@@ -23,25 +23,25 @@
             border-radius: 24px;
             box-shadow: 0 15px 30px rgba(56, 189, 248, 0.2);
             padding: 28px;
-            max-width: 680px; /* Diperlebar agar ruang teks di samping gambar pas */
+            max-width: 680px;
             width: 100%;
             border: 4px solid #f0f9ff;
-            display: flex; /* Mengaktifkan flexbox untuk posisi menyamping */
+            display: flex;
             align-items: center;
-            gap: 28px; /* Jarak antara gambar dan blok teks */
+            gap: 28px;
         }
 
         .book-cover {
-            width: 160px; /* Ukuran disesuaikan agar pas saat posisi menyamping */
+            width: 160px;
             height: auto;
             border-radius: 16px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
             border: 3px solid #e0f2fe;
-            flex-shrink: 0; /* Mencegah gambar menyusut */
+            flex-shrink: 0;
         }
 
         .book-details {
-            text-align: left; /* Teks diatur rata kiri agar rapi di samping gambar */
+            text-align: left;
             flex-grow: 1;
         }
 
@@ -96,7 +96,6 @@
             background-color: #94a3b8;
         }
 
-        /* Responsif untuk layar HP kecil agar kembali menumpuk ke bawah */
         @media (max-width: 550px) {
             .book-card {
                 flex-direction: column;
@@ -123,10 +122,8 @@
         $is_published = 1;
         $gambar_sampul = "https://cdn.gramedia.com/uploads/products/gamp4h-ol-.jpg";
 
-        // Gambar ditaruh paling atas dalam struktur HTML flexbox agar berada di sebelah kiri
         echo "<img src='$gambar_sampul' alt='Buku $buku' class='book-cover'>";
         
-        // Pembungkus baru untuk menampung teks di sebelah kanan gambar
         echo "<div class='book-details'>";
             echo "<h1 class='book-title'>$buku</h1>";
             echo "<p class='book-author'>Oleh: $author</p>";
