@@ -7,10 +7,10 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #fff3e5;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
             margin: 0;
-            padding: 40px 20px;
-            color: #334155;
+            padding: 20px;
+            color: #1e3a8a;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,66 +20,94 @@
 
         .book-card {
             background-color: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-            padding: 32px;
-            max-width: 450px;
+            border-radius: 24px;
+            box-shadow: 0 15px 30px rgba(56, 189, 248, 0.2);
+            padding: 28px;
+            max-width: 680px; /* Diperlebar agar ruang teks di samping gambar pas */
             width: 100%;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            border: 4px solid #f0f9ff;
+            display: flex; /* Mengaktifkan flexbox untuk posisi menyamping */
+            align-items: center;
+            gap: 28px; /* Jarak antara gambar dan blok teks */
         }
 
         .book-cover {
-            width: 180px;
+            width: 160px; /* Ukuran disesuaikan agar pas saat posisi menyamping */
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease;
-            margin-bottom: 20px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            border: 3px solid #e0f2fe;
+            flex-shrink: 0; /* Mencegah gambar menyusut */
+        }
+
+        .book-details {
+            text-align: left; /* Teks diatur rata kiri agar rapi di samping gambar */
+            flex-grow: 1;
         }
 
         .book-title {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 700;
-            color: #1e293b;
-            margin: 10px 0 20px 0;
-            letter-spacing: -0.5px;
+            color: #0369a1;
+            margin: 0 0 4px 0;
+            line-height: 1.4;
+        }
+
+        .book-author {
+            color: #0ea5e9;
+            font-weight: 600;
+            margin: 0 0 16px 0;
+            font-size: 14px;
         }
 
         .book-info {
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.6;
-            color: #475569;
+            color: #334155;
             background-color: #f8fafc;
             padding: 16px;
-            border-radius: 12px;
-            margin-bottom: 24px;
-            text-align: left;
-            border: #cfcfcf 1px solid;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            border: #bae6fd 2px dashed;
         }
 
         .book-info strong {
-            color: #1e293b;
+            color: #0284c7;
         }
 
         .status-badge {
             display: inline-block;
-            padding: 6px 16px;
-            font-size: 13px;
-            font-weight: 600;
-            border-radius: 20px;
+            padding: 6px 18px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 50px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .status-published {
-            color: #63a77c;
-            border: 1px solid #63a77c;
+            color: #ffffff;
+            background-color: #38bdf8;
+            box-shadow: 0 4px 10px rgba(56, 189, 248, 0.4);
         }
 
         .status-unpublished {
-            color: #c55d5d;
-            border: 1px solid #c55d5d;
+            color: #ffffff;
+            background-color: #94a3b8;
+        }
+
+        /* Responsif untuk layar HP kecil agar kembali menumpuk ke bawah */
+        @media (max-width: 550px) {
+            .book-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .book-details {
+                text-align: center;
+            }
+            .book-cover {
+                width: 150px;
+            }
         }
     </style>
 </head>
@@ -87,26 +115,31 @@
 
     <div class="book-card">
         <?php
-        $buku = "Rahasia Hati";
-        $halaman = 288;
-        $author = "Natsume Soseki";
-        $penerbit = "Gramedia";
-        $tahun = 2016;
+        $buku = "Langkah Mudah Belajar Pemrograman PHP Menggunakan CodeIgniter 4 Untuk Pemula";
+        $halaman = 196;
+        $author = "Randi Adrika Putra";
+        $penerbit = "Jasakom";
+        $tahun = 2020;
         $is_published = 1;
-        $gambar_sampul = "https://image-v2.free-ebook.my.id/sketch/rahasia-hati-by-natsume-soseki/rahasia-hati-by-natsume-soseki-0.jpg?v=2";
+        $gambar_sampul = "https://cdn.gramedia.com/uploads/products/gamp4h-ol-.jpg";
 
+        // Gambar ditaruh paling atas dalam struktur HTML flexbox agar berada di sebelah kiri
         echo "<img src='$gambar_sampul' alt='Buku $buku' class='book-cover'>";
-        echo "<h1 class='book-title'>$buku</h1>";
-        echo "<p class='book-author'>Oleh: $author</p>";
-        echo "<div class='book-info'>";
-        echo "Buku <strong>$buku</strong> yang ditulis oleh <strong>$author</strong> diterbitkan oleh <strong>$penerbit</strong> pada tahun <strong>$tahun</strong> dengan ketebalan <strong>$halaman halaman</strong>.";
-        echo "</div>";
+        
+        // Pembungkus baru untuk menampung teks di sebelah kanan gambar
+        echo "<div class='book-details'>";
+            echo "<h1 class='book-title'>$buku</h1>";
+            echo "<p class='book-author'>Oleh: $author</p>";
+            echo "<div class='book-info'>";
+                echo "Buku <strong>$buku</strong> yang ditulis oleh <strong>$author</strong> diterbitkan oleh <strong>$penerbit</strong> pada tahun <strong>$tahun</strong> dengan ketebalan <strong>$halaman halaman</strong>.";
+            echo "</div>";
 
-        if ($is_published) {
-            echo "<span class='status-badge status-published'>Sudah Diterbitkan</span>";
-        } else {
-            echo "<span class='status-badge status-unpublished'>Belum Diterbitkan</span>";
-        }
+            if ($is_published) {
+                echo "<span class='status-badge status-published'>Sudah Diterbitkan</span>";
+            } else {
+                echo "<span class='status-badge status-unpublished'>Belum Diterbitkan</span>";
+            }
+        echo "</div>";
         ?>
     </div>
 
