@@ -1,10 +1,10 @@
-<?php
+<?php 
 
 echo 8;
 echo "\n";
-echo is_int(value: 8); // 1 = true
+echo is_integer(8); // 1 = true, 0 = false
 echo "\n";
-echo is_int(value: "8"); //  (empty string)
+echo is_integer("8"); // tidak tampil 
 echo "\n";
-echo is_string(value: "8"); // true
+echo is_string("8"); // 1 = true
 ?>

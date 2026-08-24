@@ -1,58 +1,61 @@
 <?php
+
 // Switch Case
 
 $buku = "Novel";
 
 switch ($buku) {
     case "Mapel":
-        echo "Buku ini adalah Mapel.\n";
-        break;
+        echo "\n Ini adalah Buku mapel";
+        break; // menandakan fungsi sebelum ini agar berakhir
     case "Komik":
-        echo "Buku ini adalah Komik.\n";
+        echo "\n Ini adalah Buku Komik";
         break;
     case "Novel":
-        echo "Buku ini adalah Novel.\n";
+        echo "\n Ini adalah buku novel";
         break;
     default:
-        echo "Jenis buku tidak diketahui.\n";
+        echo "\<nav></nav>Buku tidak ditemukan";
 }
+
 
 $nilaiEl = 80;
 $kkm = 75;
+$hasil = "true";
 
 switch ($nilaiEl >= $kkm) {
     case true:
-        echo "Selamat, Anda Lulus!\n";
+        echo "\n El dinyatakan Lulus";
         break;
     case false:
-        echo "Maaf, Anda Tidak Lulus.\n";
+        echo "\n El Tetap semangat";
         break;
     default:
-        echo "Hasil tidak ditemukan.\n";
+        echo "\n Hasil tidak ditemukan";
+        break;
 }
+// lebih ringan di memori php, lebih mudah dibaca developer`
 
-// match
 
-$class = "lg";
+//match
+
+$class = 'lg';
 
 $result = match ($class) {
-    "sm" => "Small",
-    "lg" => "Large",
-    "xl" => "Extra Large",
-    "xxl" => "Extra Extra Large",
+    'sm' => "Small",
+    'lg' => "Large/Besar",
+    'xl' => "Extra Large/Besar",
+    'xxl' => "Super Extra Large",
+    default => "Mismatch Ukuran"
 };
 
 $status = 404;
 $webResult = match ($status) {
-    200, 201 => "Success",
-    400 => "Bad Request",
-    401 => "Unauthorized",
-    403 => "Forbidden",
-    404 => "Not Found",
-    default => "Unknown Status",
+    200 => "Sukses",
+    404 => "Halaman Tidak Ditemukan",
+    500 => "Internal Server Error",
+    default => "System Eror"
 };
 
-echo $result . "\n";
-echo $webResult . "\n";
-
-// Kenapa switch lebih baik daripada if else? Karena switch case lebih mudah dibaca dan lebih cepat daripada if else.
+echo $result;
+echo $webResult;
