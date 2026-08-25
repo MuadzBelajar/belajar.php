@@ -5,7 +5,7 @@ Repositori ini berisi kumpulan kode latihan dan dokumentasi proses pembelajaran 
 ## Isi Repositori
 * Kode program hasil latihan dasar.
 * Struktur file dan folder projek.
-* Catatan perkembangan belajar.
+
 
 ## Kebutuhan Sistem
 * Visual Studio Code
